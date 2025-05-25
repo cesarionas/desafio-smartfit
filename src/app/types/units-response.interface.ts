@@ -2,5 +2,5 @@ import { Location } from "./location.interface";
 
 export interface UnitResponse {
     current_country_id: number,
-    location: Location[],
+    locations: Location[],
 }
