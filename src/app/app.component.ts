@@ -8,8 +8,8 @@ import { FormsComponent } from './components/forms/forms.component';
   imports: [
     RouterOutlet,
     HeaderComponent,
-    FormsComponent
-],
+    FormsComponent,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
