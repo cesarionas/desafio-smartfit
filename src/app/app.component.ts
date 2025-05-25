@@ -10,6 +10,7 @@ import { GetUnitsService } from './services/get-units.service';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
   imports: [
     RouterOutlet,
     HeaderComponent,
@@ -23,10 +24,10 @@ import { GetUnitsService } from './services/get-units.service';
 export class AppComponent {
   showList = new BehaviorSubject<boolean>(false);
   unitsList: Location[] = [];
-  
-  constructor(private uniteService: GetUnitsService) { }
+
+  constructor(private unitService: GetUnitsService) { }
   onSubmit() {
-    this.unitsList = this.uniteService.getFilteredUnits();
+    this.unitsList = this.unitService.getFilteredUnits();
     this.showList.next(true);
   }
 }
