@@ -2,6 +2,11 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from "./components/header/header.component";
 import { FormsComponent } from './components/forms/forms.component';
+import { BehaviorSubject } from 'rxjs';
+import { CardsListComponent } from "./components/cards-list/cards-list.component";
+import { CommonModule } from '@angular/common';
+import { Location } from './types/location.interface';
+import { GetUnitsService } from './services/get-units.service';
 
 @Component({
   selector: 'app-root',
@@ -9,10 +14,19 @@ import { FormsComponent } from './components/forms/forms.component';
     RouterOutlet,
     HeaderComponent,
     FormsComponent,
+    CardsListComponent,
+    CommonModule
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'desafio-smartfit';
+  showList = new BehaviorSubject<boolean>(false);
+  unitsList: Location[] = [];
+  
+  constructor(private uniteService: GetUnitsService) { }
+  onSubmit() {
+    this.unitsList = this.uniteService.getFilteredUnits();
+    this.showList.next(true);
+  }
 }
